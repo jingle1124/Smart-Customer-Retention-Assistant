@@ -1,7 +1,7 @@
 # app.py
 import streamlit as st, requests
 
-N8N = "YOUR N8N WEBHOOK URL"
+N8N = "https://jinglekoh.app.n8n.cloud/webhook/retention"
 
 st. title("Smart Customer Retention Assistant")
 name = st.text_input("Customer name", "Jane Tan")
