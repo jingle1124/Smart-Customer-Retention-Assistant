@@ -11,11 +11,10 @@ tickets = st.number_input("Support tickets", 0, 20, 4)
 contract = st. selectbox("Contract", ["Month-to-month", "Annual"])
 
 if st.button("Analyze & recommend"):
-    payload = {"name": name, "tenure": tenure,
-        "monthly_charges": monthly, "support_tickets": tickets,
-        "annual_contract": 1 if contract == "Annual" else 0}
+    payload = {"name": name, "tenure": tenure, "monthly_charges": monthly, "support_tickets": tickets, "annual_contract": 1 if contract == "Annual" else 0}
     d = requests.post(N8N, json=payload, timeout=60).json()
     st.metric("Churn probability", f"{d['churn_probability']*100 :. 0f}%")
     st.subheader(f"Risk tier: {d['risk_tier']}")
     st.write(f"Offer: {d['recommended_offer' ]}")
     st. text_area("Draft message", d["draft_message"], height=160)
+
